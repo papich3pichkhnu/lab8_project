@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="CRUD" Height="450" Width="859"
+        Title="University" Height="450" Width="859"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -358,10 +358,10 @@
   HeadersVisibility="All">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Student" Binding="{Binding Path=Student.FullName}"/>
-                            <DataGridTextColumn Header="Lecturer" Binding="{Binding Path=Lecturer.FullName}"/>
-                            <DataGridTextColumn Header="Discipline" Binding="{Binding Path=Discipline.FullName}"/>
-                            <DataGridTextColumn Header="Mark" Binding="{Binding Path=Mark}"/>                        
+                            <DataGridTextColumn Header="Student" Binding="{Binding Path=Student.FullName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Lecturer" Binding="{Binding Path=Lecturer.FullName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Discipline" Binding="{Binding Path=Discipline.Name}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Mark" Binding="{Binding Path=Mark}" IsReadOnly="True"/>                        
                             
                         </DataGrid.Columns>
                     </DataGrid>
