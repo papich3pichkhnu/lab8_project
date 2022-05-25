@@ -1,0 +1,53 @@
+﻿<Window x:Class="WpfApp1.LinqLab"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="LinqLab" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <materialDesign:Card>
+            <TabControl
+    materialDesign:ColorZoneAssist.Mode="PrimaryLight">
+                <TabItem
+      Header="LINQ">
+                    <Grid>
+                        <WrapPanel Margin="0,10,0,272">
+                            <Button Content="Execute Where" Click="WhereButton_Click" x:Name="WhereButton" Margin="5"/>
+                            <Button Content="Execute Group" x:Name="GroupButton" Click="GroupButton_Click" Margin="5"/>
+                            <Button Content="Execute Join" x:Name="JoinButton" Margin="5" Click="JoinButton_Click"/>
+                            <Button Content="Execute Extension" x:Name="ExtensionButton" Margin="5" Click="ExtensionButton_Click"/>
+                            <Button Content="Execute Extension + Count" x:Name="ExtensionCountButton" Margin="5" Click="ExtensionCountButton_Click"/>
+                            <Button Content="Execute Sort" x:Name="SortButton" Margin="5" Click="SortButton_Click"/>
+                            <Button Content="Execute Union" x:Name="UnionButton" Margin="5" Click="UnionButton_Click"/>
+                            <Button Content="Execute Intersect" x:Name="IntersectButton" Margin="5" Click="IntersectButton_Click"/>
+                            <Button Content="Execute Except" x:Name="ExceptButton" Margin="5" Click="ExceptButton_Click"/>
+                        </WrapPanel>
+                        <ListView x:Name="StudentsQueryList" Margin="70,132,43,32">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Прізвище" DisplayMemberBinding="{Binding LastName}"/>
+                                    <GridViewColumn Header="Ім'я" DisplayMemberBinding="{Binding FirstName}"/>
+                                    <GridViewColumn Header="По-батькові" DisplayMemberBinding="{Binding MiddleName}"/>
+                                    <GridViewColumn Header="Стать" DisplayMemberBinding="{Binding Sex}"/>
+                                    <GridViewColumn Header="Факультет" DisplayMemberBinding="{Binding FacultyName}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                
+
+            </TabControl>
+        </materialDesign:Card>
+    </Grid>
+</Window>

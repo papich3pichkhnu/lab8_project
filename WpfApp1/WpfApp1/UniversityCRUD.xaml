@@ -1,0 +1,378 @@
+﻿<Window x:Class="WpfApp1.UniversityCRUD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="CRUD" Height="450" Width="859"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+            
+            <TabControl
+    HorizontalContentAlignment="Center"
+    materialDesign:ColorZoneAssist.Mode="SecondaryMid">
+            
+            <TabControl.Template>
+            <ControlTemplate TargetType="TabControl">
+                <StackPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <TabPanel x:Name="HeaderPanel"
+                              Panel.ZIndex ="1" 
+                              KeyboardNavigation.TabIndex="1"
+                              Grid.Column="0"
+                              Grid.Row="0"
+                              Margin="2,2,2,0"
+                              IsItemsHost="true"/>
+                    </ScrollViewer>
+                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          Margin="{TemplateBinding Padding}"
+                                          ContentSource="SelectedContent"
+                                      />
+                </StackPanel>
+            </ControlTemplate>
+        </TabControl.Template>
+                <TabItem
+      Header="Faculties">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="FacultiesList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Abbreviature" Binding="{Binding Path=Abbreviature}"/>
+                            <DataGridTextColumn Header="Decane" Binding="{Binding Path=Decane}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}"/>
+                            <DataGridTextColumn Header="TelephoneNumber" Binding="{Binding Path=TelephoneNumber}"/>
+                            <DataGridTextColumn Header="NumOfSpecs" Binding="{Binding Path=NumOfSpecs}"/>
+                            <DataGridTextColumn Header="YearOfCreating" Binding="{Binding Path=YearOfCreating}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateFacultyButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteFacultyButton" Content="Delete" Margin="20" Click="DeleteFacultyButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Students">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="StudentsList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="LastName" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="FirstName" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="MiddleName" Binding="{Binding Path=MiddleName}"/>
+                            <DataGridTextColumn Header="Sex" Binding="{Binding Path=Sex}"/>
+                            <DataGridComboBoxColumn x:Name="ComboBoxFacultiesStudents" Header="Faculty"
+                             SelectedItemBinding="{Binding Path=Faculty}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn x:Name="ComboBoxMentorsStudents" Header="Mentor"
+                             SelectedItemBinding="{Binding Path=Mentor}" DisplayMemberPath="FullName"></DataGridComboBoxColumn>
+                            <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding Path=Height}"/>
+                            <DataGridTextColumn Header="ColorOfEyes" Binding="{Binding Path=ColorOfEyes}"/>
+                            <DataGridTextColumn Header="ColorOfHair" Binding="{Binding Path=ColorOfHair}"/>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateStudentButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteStudentButton" Content="Delete" Margin="20" Click="DeleteStudentButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Lecturers">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="LecturersList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="LastName" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="FirstName" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="MiddleName" Binding="{Binding Path=MiddleName}"/>
+                            <DataGridTextColumn Header="Sex" Binding="{Binding Path=Sex}"/>
+                            <DataGridComboBoxColumn x:Name="ComboBoxDepartmentsLecturers" Header="Department"
+                             SelectedItemBinding="{Binding Path=Department}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>                            
+                            <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding Path=Height}"/>
+                            <DataGridTextColumn Header="ColorOfEyes" Binding="{Binding Path=ColorOfEyes}"/>
+                            <DataGridTextColumn Header="ColorOfHair" Binding="{Binding Path=ColorOfHair}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateLecturerButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteLecturerButton" Content="Delete" Margin="20" Click="DeleteLecturerButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Senior Lecturers">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="SeniorLecturersList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="LastName" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="FirstName" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="MiddleName" Binding="{Binding Path=MiddleName}"/>
+                            <DataGridTextColumn Header="Sex" Binding="{Binding Path=Sex}"/>
+                            <DataGridComboBoxColumn x:Name="ComboBoxDepartmentsSeniorLecturers" Header="Department"
+                             SelectedItemBinding="{Binding Path=Department}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>
+                            <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding Path=Height}"/>
+                            <DataGridTextColumn Header="ColorOfEyes" Binding="{Binding Path=ColorOfEyes}"/>
+                            <DataGridTextColumn Header="ColorOfHair" Binding="{Binding Path=ColorOfHair}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateSeniorLecturerButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteSeniorLecturerButton" Content="Delete" Margin="20" Click="DeleteSeniorLecturerButton_Click"/>
+                    </StackPanel>
+    </Grid>
+    </TabItem>
+                <TabItem
+      Header="Associate Professors">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="AssociateProfessorsList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="LastName" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="FirstName" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="MiddleName" Binding="{Binding Path=MiddleName}"/>
+                            <DataGridTextColumn Header="Sex" Binding="{Binding Path=Sex}"/>
+                            <DataGridComboBoxColumn x:Name="ComboBoxDepartmentsAssociateProfessors" Header="Department"
+                             SelectedItemBinding="{Binding Path=Department}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>
+                            <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
+                            <DataGridTextColumn Header="Height" Binding="{Binding Path=Height}"/>
+                            <DataGridTextColumn Header="ColorOfEyes" Binding="{Binding Path=ColorOfEyes}"/>
+                            <DataGridTextColumn Header="ColorOfHair" Binding="{Binding Path=ColorOfHair}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateAssociateProfessorButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteAssociateProfessorButton" Content="Delete" Margin="20" Click="DeleteAssociateProfessorButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Disciplines">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="DisciplinesList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Credits" Binding="{Binding Path=Credits}"/>
+                            <DataGridTextColumn Header="NumberOfHours" Binding="{Binding Path=NumberOfHours}"/>
+                            <DataGridTextColumn Header="NumberOfControlWorks" Binding="{Binding Path=NumberOfControlWorks}"/>
+                            <DataGridComboBoxColumn x:Name="ComboBoxDepartmentsDisciplines" Header="Department"
+                             SelectedItemBinding="{Binding Path=Department}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>
+                            <DataGridTextColumn Header="TypeOfControl" Binding="{Binding Path=TypeOfControl}"/>                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateDisciplineButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteDisciplineButton" Content="Delete" Margin="20" Click="DeleteDisciplineButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Departments">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="DepartmentsList"
+  
+  CanUserAddRows="True"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Abbreviature" Binding="{Binding Path=Abbreviature}"/>                            
+                            <DataGridComboBoxColumn x:Name="ComboBoxFacultiesDepartments" Header="Faculty"
+                             SelectedItemBinding="{Binding Path=Faculty}" DisplayMemberPath="Abbreviature"></DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn x:Name="ComboBoxAssociateProfessorsDepartments" Header="HeadOfDepartment"
+                             SelectedItemBinding="{Binding Path=HeadOfDepartment}" DisplayMemberPath="FullName"></DataGridComboBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateDepartmentButton" Content="Update" Margin="20" Click="UpdateFacultyButton_Click"/>
+                        <Button x:Name="DeleteDepartmentButton" Content="Delete" Margin="20" Click="DeleteDepartmentButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+                <TabItem
+      Header="Exams" FontSize="20">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock FontSize="30" HorizontalAlignment="Center">Exams</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center">Student: </Label>
+                        <ComboBox x:Name="ComboBoxStudent" Width="350" Margin="10" HorizontalAlignment="Left">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FullName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center">Lecturer:</Label>
+                        <ComboBox x:Name="ComboBoxLecturers" Width="350" Margin="10" HorizontalAlignment="Left">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FullName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label VerticalAlignment="Center">Discipline:</Label>
+                        <ComboBox x:Name="ComboBoxDisciplines" Width="350" Margin="10" HorizontalAlignment="Left">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <Button Width="120" Click="Button_Click">GO</Button>
+                </StackPanel>
+                </TabItem>
+            <TabItem
+      Header="Exams List">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <DataGrid x:Name="ExamsList"
+  
+  CanUserAddRows="False"
+  AutoGenerateColumns="False"
+  HeadersVisibility="All">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Student" Binding="{Binding Path=Student.FullName}"/>
+                            <DataGridTextColumn Header="Lecturer" Binding="{Binding Path=Lecturer.FullName}"/>
+                            <DataGridTextColumn Header="Discipline" Binding="{Binding Path=Discipline.FullName}"/>
+                            <DataGridTextColumn Header="Mark" Binding="{Binding Path=Mark}"/>                        
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="UpdateExamButton" Content="Save" Margin="20" Click="UpdateExamButton_Click"/>
+                        <Button x:Name="DeleteExamButton" Content="Delete" Margin="20" Click="DeleteExamButton_Click"/>                        
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+            
+        
+    </Grid>
+</Window>
